@@ -1,0 +1,26 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+apiVersion: v2
+appVersion: 1.16.0
+description: A Helm chart for Kubernetes
+name: react-app
+type: application
+version: 0.1.0
+
+...
+files:
+  react-app-0.1.0.tgz: sha256:67c3b43f5e2e83e482647501594e2e3a544171888360099ef32202ba1d06f58d
+-----BEGIN PGP SIGNATURE-----
+
+wsDcBAEBCgAQBQJiRoJBCRBocQ8Zri51swAAgsUMAJuyljPXLfjY+j3N9bdc6op4
+Lx0ioFjjvkqmDGDNsrn6G2jt7Pbazf1/srQaWtYXfJjWyMRKxEeIKwxi5MvTVglT
+0cpPZL9TwiR939NWUam8AS2T0EkZVpsWw969neOn9Q4XkODVfEhoUjSj1fzDuWg6
+WtMHo+mmoCRqe9qFDRt3QhJ/GumkOSoXjblAx0AJLqU4ix7cbFTOjmsHliR21zOi
+z79eE8BOh9gRmEHzBpwuN+3YmSDTRFfqxODHZs7/bQqs2Ub+Klkt/R4/dGQSmNTr
+m02ARPa1D6WabFe1Ax5V1I45tb/sYgyTXl8wktahaY5N8kacKUzqNuJ/69it2mCj
+JsG7FcrrUM1xLUPdEPZKchJ+8yHjJJPcRZcQiUEGSrrNFAFATY9wYTEl4M/TB0YN
+eN2Q4wmN2lwaP6n/FtstmGIygDU1QRrfsPEwnejM4kfizlvQ3LYUt0wgS97lYtRF
+U6MFqmqFP8hF/jX4/zOXSSzXkJvqFINLBeLhnenmVg==
+=Ad93
+-----END PGP SIGNATURE-----

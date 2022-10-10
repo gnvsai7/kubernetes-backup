@@ -1,0 +1,19 @@
+#!/bin/bash
+
+#monitoring disk space utilization
+
+
+
+
+for path in `/bin/df -h | awk '{print $5}' | sed 's/%//g'`
+do 
+	
+	if [ $path -gt 20 ]
+	then 
+		df -h | grep $path% >> /tmp/temp
+	
+	
+        fi
+		
+done
+
