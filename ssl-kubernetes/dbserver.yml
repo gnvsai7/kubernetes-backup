@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dbserver
+  labels:
+    app: bc-dbserver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bc-dbserver
+  template:
+    metadata:
+      labels:
+        app: bc-dbserver
+    spec:
+      containers:
+        - name: bc-dbserver
+          image: gnvsai2020/bc-39-dbserver
+          ports:
+            - containerPort: 8000

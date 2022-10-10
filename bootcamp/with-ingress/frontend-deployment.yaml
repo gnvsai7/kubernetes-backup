@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  labels:
+    role: frontend
+    app: bc_26
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      role: frontend
+      app: bc_26
+  template:
+    metadata:
+      labels:
+        role: frontend
+        app: bc_26
+    spec:
+      containers:
+        - name: frontend
+          image: gnvsai2020/frontend-image
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: REACT_APP_API_URL
+              value: 192.168.49.2:30010
+          ports:
+            - containerPort: 3000

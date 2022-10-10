@@ -1,0 +1,14 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: frontend
+  namespace: cloudacademy
+spec:
+ rules:
+ - host: frontend.192.168.49.2.nip.io
+   http:
+     paths:
+     - path: /
+       backend:
+         serviceName: frontend
+         servicePort: 80

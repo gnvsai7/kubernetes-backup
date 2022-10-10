@@ -1,0 +1,45 @@
+version: "3.0"
+
+services:
+
+  backend:
+    container_name: backend
+    image: gnvsai2020/backend-image
+    ports:
+      - "8090:8090"
+    restart: always
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/book_discovery
+      SPRING_DATASOURCE_USERNAME: springstudent
+      SPRING_DATASOURCE_PASSWORD: springstudent
+      SPRING_DATASOURCE_ROOT_PASSWORD: springstudent
+   
+  
+  frontend:
+    image: gnvsai2020/frontend-image
+    ports: 
+      - "3000:3000"
+    restart: always
+    depends_on:
+      - backend
+    
+
+  mysql: 
+    container_name: mysql
+    image: mysql
+    ports: 
+      - "3306:3306"
+    restart: always
+    environment:
+      MYSQL_DATABASE: book_discovery
+      MYSQL_USER: springstudent
+      MYSQL_PASSWORD: springstudent
+      MYSQL_ROOT_PASSWORD: springstudent
+    
+
+
+
+
+  

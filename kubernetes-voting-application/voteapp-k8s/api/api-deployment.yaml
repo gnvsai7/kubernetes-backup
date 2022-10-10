@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api
+  labels:
+    role: api
+    env: demo
+spec:
+  replicas: 2
+  
+  selector:
+    matchLabels:
+      role: api
+  
+  template:
+    metadata:
+      labels:
+        role: api
+    spec:
+      containers:
+      - name: api
+        image: gnvsai2020/voteapp-api
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: MONGO_CONN_STR
+          value: "mongodb://mongo-0.mongo,mongo-1.mongo,mongo-2.mongo:27017/langdb"
+        - name: MONGO_USERNAME
+          value: admin
+        - name: MONGO_PASSWORD
+          value: password
+        ports:
+        - containerPort: 8080
+        

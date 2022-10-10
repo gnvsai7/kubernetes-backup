@@ -1,0 +1,90 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-frontend
+  labels:
+    app: bc-frontend
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: bc-frontend
+  template:
+    metadata:
+      labels:
+        app: bc-frontend
+    spec:
+      containers:
+        - name: bc-frontend
+          image: {{ .Values.image1.repository }}
+          env:
+            - name: baseURL
+              value: http://ac2c67c4393164646be143185bcbca50-1982648001.us-east-2.elb.amazonaws.com:8090/
+          ports:
+            - containerPort: 80
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-frontend-backend
+  labels:
+    app: bc_26
+spec:
+  replicas: {{ .Values.replicaCount }}
+
+  selector:
+    matchLabels:
+      app: bc_26
+  template:
+    metadata:
+      labels:
+        app: bc_26
+    spec:
+      containers:
+        - name: backend
+          image: {{ .Values.image2.repository }}
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mysql://mysql:3306/book_discovery
+            - name: SPRING_DATASOURCE_USERNAME
+              value: {{ .Values.secret.user }}
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: {{ .Values.secret.password }}
+            - name: SPRING_DATASOURCE_ROOT_PASSWORD
+              value: {{ .Values.secret.rootpassword }}
+          ports:
+            - containerPort: 8090
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-mysql
+  labels:
+    app: bc_26
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: bc_26
+  template:
+    metadata:
+      labels:
+        app: bc_26
+    spec:
+      containers:
+        - name: mysql
+          image: {{ .Values.image3.repository }}
+          env:
+            - name: MYSQL_DATABASE
+              value: book_discovery
+            - name: MYSQL_ROOT_PASSWORD
+              value: {{ .Values.secret.rootpassword }}
+            - name: MYSQL_USER
+              value: {{ .Values.secret.user }}
+            - name: MYSQL_PASSWORD
+              value: {{ .Values.secret.password }}
+          ports:
+            - containerPort: 3306
+            

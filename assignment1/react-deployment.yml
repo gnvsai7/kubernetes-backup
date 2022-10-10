@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: react-app-deployment
+  labels: 
+    name: react-app
+    app: react-app
+
+spec: 
+  template: 
+    metadata:
+      name: react-pod
+      labels: 
+        name: react-app
+        app: react-app
+    spec:
+      containers:
+        - name: react-app
+          image: gnvsai2020/githubreact:latest
+          ports:
+            - containerPort: 3000
+
+  replicas: 1
+  
+  selector: 
+    matchLabels:
+      name: react-app
+      app: react-app

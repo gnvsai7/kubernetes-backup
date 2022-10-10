@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  labels:
+    role: frontend
+    env: demo
+spec:
+  replicas: 2
+  
+  selector:
+    matchLabels:
+      role: frontend
+  
+  template:
+    metadata:
+      labels:
+        role: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: gnvsai2020/voteapp-frontend:v1 
+        imagePullPolicy: IfNotPresent
+        env:
+          - name: REACT_APP_APIHOSTPORT
+            value: 192.168.49.2:30010
+
+        ports:
+        - containerPort: 80
+        
